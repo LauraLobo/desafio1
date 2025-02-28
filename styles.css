@@ -1,0 +1,165 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+    min-height: 100vh;
+    background: linear-gradient(135deg, #000000 0%, #3a3a3a 100%);
+    overflow: hidden;
+}
+
+.container {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+}
+
+.message {
+    font-size: 3vw;
+    color: #ffffff;
+    margin-bottom: 2rem;
+    text-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+    animation: chakraGlow 2s infinite;
+}
+
+.interactive-button {
+    position: relative;
+    padding: 1rem 2rem;
+    font-size: 1.5rem;
+    color: #fff;
+    background: rgba(56, 77, 116, 0.397);
+    border: 2px solid #000caf;
+    border-radius: 1rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    overflow: hidden;
+    box-shadow: 0 0 20px rgba(56, 77, 116, 0.397);
+}
+
+.interactive-button:hover {
+    transform: scale(1.1);
+    background: rgba(56, 77, 116, 0.397);
+    box-shadow: 0 0 30px rgba(56, 77, 116, 0.397);
+}
+
+.button-glow {
+    position: absolute;
+    inset: 0;
+    border-radius: 1rem;
+    background: linear-gradient(135deg, rgba(37, 43, 128, 0.5), rgba(14, 55, 165, 0.5));
+    opacity: 0.5;
+    filter: blur(10px);
+}
+
+.button-container {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.hand-symbol {
+    position: absolute;
+    width: 20vw;
+    height: auto;
+    top: -25vw; /* Ajusta a posição vertical */
+    left: 50%;
+    transform: translateX(-50%); /* Centraliza a mão */
+    pointer-events: none;
+    z-index: 1; /* Garante que a mão apareça sobre o botão */
+    transition: transform 0.3s ease-in-out;
+}
+
+/* Animação ao clicar no botão */
+.interactive-button:active ~ .hand-symbol {
+    transform: translateY(-50%);
+}
+
+.click-counter {
+    position: absolute;
+    bottom: 2rem;
+    font-size: 1.2rem;
+    color: #ffffff;
+    text-shadow: 0 0 10px rgba(18, 34, 126, 0.5);
+}
+
+.jutsu {
+    position: absolute;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 15vw;
+    height: 15vw;
+    pointer-events: none;
+    animation: jutsuAnimation 2s ease-out forwards;
+    filter: drop-shadow(0 0 10px rgba(255, 255, 255, 0.5));
+}
+
+.jutsu-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 50%;
+}
+
+@keyframes chakraGlow {
+    0%, 100% {
+        text-shadow: 0 0 10px rgba(12, 29, 126, 0.5);
+        transform: scale(1);
+    }
+    50% {
+        text-shadow: 0 0 20px rgba(13, 47, 160, 0.8);
+        transform: scale(1.05);
+    }
+}
+
+@keyframes jutsuAnimation {
+    0% {
+        opacity: 0;
+        transform: scale(0) rotate(0deg);
+    }
+    50% {
+        opacity: 1;
+        transform: scale(1.5) rotate(180deg);
+    }
+    100% {
+        opacity: 0;
+        transform: scale(0.5) rotate(360deg);
+    }
+}
+
+/* Ajustes para telas menores que 640px */
+@media (max-width: 640px) {
+    .message {
+        font-size: 5vw; /* Ajuste a fonte para telas menores */
+    }
+
+    .hand-symbol {
+        width: 25vw; /* Ajuste o tamanho da mão para dispositivos móveis */
+        top: -35vw; /* Ajusta a posição da mão */
+    }
+
+    .interactive-button {
+        padding: 1rem 2rem;
+        font-size: 1.2rem;
+    }
+
+    .jutsu {
+        width: 25vw; /* Ajuste o tamanho do jutsu */
+        height: 25vw;
+    }
+
+    .click-counter {
+        font-size: 1rem;
+    }
+}
+
+

@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jutsos de Naruto</title>
+    <link rel="stylesheet" href="./styles.css">
+</head>
+<body>
+
+
+
+    <div class="container">
+        <div class="message">Use seu Chakra!</div>
+
+        <div class="button-container">
+            <button id="interactButton" class="interactive-button">
+                Realizar Jutso
+                <div class="button-glow"></div>
+            </button>
+            <img src="img/selo.gif" alt="Símbolo de Jutsu" class="hand-symbol">
+        </div>
+
+        <div class="click-counter">Chakra usado: <span id="clickCount">0</span></div>
+        <div id="particlesContainer"></div>
+    </div>
+
+
+  
+  
+
+    <script>
+        let clickCount = 0;
+        const jutsus = [
+            { image: 'https://i.gifer.com/JRgf.gif', name: 'Rasengan' },
+            { image: 'https://i.gifer.com/8UJM.gif', name: 'Katon' },
+            { image: 'https://i.gifer.com/c25.gif', name: 'Susanoo' },
+            { image: 'https://i.gifer.com/79dn.gif', name: 'Sharingan' },
+            { image: 'https://i.gifer.com/79dV.gif', name: 'Chidori' }
+        ];
+
+        document.getElementById('interactButton').addEventListener('click', () => {
+            clickCount++;
+            document.getElementById('clickCount').textContent = clickCount;
+
+            // Animação da mão ao clicar
+       
+
+            // Criar múltiplos efeitos de jutsu
+            for (let i = 0; i < 8; i++) {
+                createJutsu();
+            }
+        });
+
+        function createJutsu() {
+            const jutsu = document.createElement('div');
+            jutsu.className = 'jutsu';
+
+            // Posição aleatória na tela
+            const x = Math.random() * window.innerWidth;
+            const y = Math.random() * window.innerHeight;
+
+            // Seleciona um jutsu aleatório
+            const selectedJutsu = jutsus[Math.floor(Math.random() * jutsus.length)];
+
+            // Cria e configura a imagem
+            const jutsuImg = document.createElement('img');
+            jutsuImg.src = selectedJutsu.image;
+            jutsuImg.className = 'jutsu-image';
+            jutsu.appendChild(jutsuImg);
+
+            jutsu.style.left = `${x}px`;
+            jutsu.style.top = `${y}px`;
+
+            // Rotação aleatória
+            const rotation = Math.random() * 360;
+            jutsu.style.transform = `rotate(${rotation}deg)`;
+
+            document.getElementById('particlesContainer').appendChild(jutsu);
+
+            setTimeout(() => {
+                jutsu.remove();
+            }, 2000);
+        }
+    </script>
+
+    
+</body>
+</html>
